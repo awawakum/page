@@ -86,7 +86,7 @@ const Hero = () => {
       <div id="services" style={{
         position: 'relative',
         padding: '4rem 1rem',
-        marginTop: '70vh',
+        marginTop: '80vh',
         textAlign: 'center',
         color: 'black',
         zIndex: 1,
