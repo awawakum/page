@@ -82,50 +82,291 @@ const Hero = () => {
         </a>
       </div>
 
-      <div id="portfolio">
+      
+      <div id="services" style={{
+        position: 'relative',
+        padding: '4rem 1rem',
+        marginTop: '70vh',
+        textAlign: 'center',
+        color: 'black',
+        zIndex: 1,
+      }}>
+        <h2 style={{
+          fontSize: 'clamp(2rem, 8vw, 4rem)',
+          fontWeight: 'bold',
+          marginBottom: '2rem',
+          fontFamily: 'Arial, sans-serif',
+          opacity: 0.9,
+        }}>
+          Наши услуги
+        </h2>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '2rem',
+          padding: '0 1rem',
+          maxWidth: '1200px',
+          margin: '0 auto',
+        }}>
+          <div style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.1)', // Прозрачный фон
+            backdropFilter: 'blur(10px)', // Размытие фона
+            padding: '2rem',
+            borderRadius: '10px',
+            border: '1px solid rgba(255, 255, 255, 0.2)', // Легкая граница
+          }}>
+            <h3 style={{
+              fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+              fontWeight: 'bold',
+              marginBottom: '1rem',
+              fontFamily: 'Arial, sans-serif',
+              opacity: 0.9,
+            }}>
+              Веб-разработка
+            </h3>
+            <p style={{
+              fontSize: 'clamp(0.9rem, 3vw, 1rem)',
+              opacity: 0.8,
+              fontFamily: 'Arial, sans-serif',
+            }}>
+              Создание современных и адаптивных веб-сайтов.
+            </p>
+          </div>
+          <div style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(10px)',
+            padding: '2rem',
+            borderRadius: '10px',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+          }}>
+            <h3 style={{
+              fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+              fontWeight: 'bold',
+              marginBottom: '1rem',
+              fontFamily: 'Arial, sans-serif',
+              opacity: 0.9,
+            }}>
+              Боты для социальных сетей и мессенджеров
+            </h3>
+            <p style={{
+              fontSize: 'clamp(0.9rem, 3vw, 1rem)',
+              opacity: 0.8,
+              fontFamily: 'Arial, sans-serif',
+            }}>
+              Разработка решений любой сложности по Вашему запросу.
+            </p>
+          </div>
+          <div style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(10px)',
+            padding: '2rem',
+            borderRadius: '10px',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+          }}>
+          <h3 style={{
+            fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+            fontWeight: 'bold',
+            marginBottom: '1rem',
+            fontFamily: 'Arial, sans-serif',
+            opacity: 0.9,
+          }}>
+            UI/UX дизайн
+          </h3>
+          <p style={{
+            fontSize: 'clamp(0.9rem, 3vw, 1rem)',
+            opacity: 0.8,
+            fontFamily: 'Arial, sans-serif',
+          }}>
+            Создание интуитивно понятных и привлекательных интерфейсов.
+          </p>
+        </div>
+        </div>
+      </div>
 
           {/* Дополнительный контент для прокрутки */}
-        <div style={{ position: 'relative', zIndex: 1, padding: '20px', marginTop: '100vh', alignSelf: 'center'}}>
-          <h2>Проекты</h2>
-          <p>
-            Портфолио
-          </p>
-          <div style={{ height: '100vh' }}>
-            <p>Дополнительный контент...</p>
-          </div>
-        </div>
-
+        <div style={{ position: 'relative', zIndex: 1, padding: '20px',alignSelf: 'center'}}>
+        <div id="portfolio" style={{
+  position: 'relative',
+  padding: '4rem 1rem',
+  textAlign: 'center',
+  color: 'black',
+  zIndex: 1,
+}}>
+  <h2 style={{
+    fontSize: 'clamp(2rem, 8vw, 4rem)',
+    fontWeight: 'bold',
+    marginBottom: '2rem',
+    fontFamily: 'Arial, sans-serif',
+    opacity: 0.9,
+  }}>
+    Портфолио
+  </h2>
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    gap: '2rem',
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 1rem',
+  }}>
+    {/* Проект 1 */}
+    <div style={{
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      backdropFilter: 'blur(10px)',
+      padding: '2rem',
+      borderRadius: '10px',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+    }}>
+      <h3 style={{
+        fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+        fontWeight: 'bold',
+        marginBottom: '1rem',
+        fontFamily: 'Arial, sans-serif',
+        opacity: 0.9,
+      }}>
+        Разработка программных продуктов любой сложности
+      </h3>
+      <p style={{
+        fontSize: 'clamp(0.9rem, 3vw, 1rem)',
+        opacity: 0.8,
+        fontFamily: 'Arial, sans-serif',
+        marginBottom: '1.5rem',
+      }}>
+        Нужно создать парсер, который будет интегрирован с Web и Telegram? Или Вам необходимо необычное API под Ваши задачи? Создадим Ваше уникальное решение, учитывая все Ваши запросы по ТЗ.
+      </p>
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '0.5rem',
+        justifyContent: 'center',
+      }}>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>Python</span>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>Golang</span>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>JS</span>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>C++</span>
       </div>
-      <div id="services">
+    </div>
 
-        {/* Дополнительный контент для прокрутки */}
-        <div style={{ position: 'relative', zIndex: 1, padding: '20px', marginTop: '100vh', alignSelf: 'center'}}>
-          <h2>Сервисы</h2>
-          <p>
-            Услуги
-          </p>
-          <div style={{ height: '100vh' }}>
-            <p>Дополнительный контент...</p>
-          </div>
-        </div>
-
+    {/* Проект 2 */}
+    <div style={{
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      backdropFilter: 'blur(10px)',
+      padding: '2rem',
+      borderRadius: '10px',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+    }}>
+      <h3 style={{
+        fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+        fontWeight: 'bold',
+        marginBottom: '1rem',
+        fontFamily: 'Arial, sans-serif',
+        opacity: 0.9,
+      }}>
+        Внедрение решений в ваши проекты
+      </h3>
+      <p style={{
+        fontSize: 'clamp(0.9rem, 3vw, 1rem)',
+        opacity: 0.8,
+        fontFamily: 'Arial, sans-serif',
+        marginBottom: '1.5rem',
+      }}>
+        Внедрение необходимых фукнций, обновление существующего фукнционала.
+      </p>
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '0.5rem',
+        justifyContent: 'center',
+      }}>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>Боты</span>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>WEB</span>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>Безопасность</span>
       </div>
-      
-      <div id="contact">
+    </div>
 
-          {/* Дополнительный контент для прокрутки */}
-        <div style={{ position: 'relative', zIndex: 1, padding: '20px', marginTop: '100vh', alignSelf: 'center'}}>
-          <h2>Контакты</h2>
-          <p>
-            Телега
-          </p>
-          <div style={{ height: '100vh' }}>
-            <p>Дополнительный контент...</p>
-          </div>
-        </div>
-
+    {/* Проект 3 */}
+    <div style={{
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      backdropFilter: 'blur(10px)',
+      padding: '2rem',
+      borderRadius: '10px',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+    }}>
+      <h3 style={{
+        fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+        fontWeight: 'bold',
+        marginBottom: '1rem',
+        fontFamily: 'Arial, sans-serif',
+        opacity: 0.9,
+      }}>
+        Безопасность и инфраструктура
+      </h3>
+      <p style={{
+        fontSize: 'clamp(0.9rem, 3vw, 1rem)',
+        opacity: 0.8,
+        fontFamily: 'Arial, sans-serif',
+        marginBottom: '1.5rem',
+      }}>
+        Внедрение инструментов для обеспечения безопасности и администрирования инфраструктуры.
+      </p>
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '0.5rem',
+        justifyContent: 'center',
+      }}>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>Docker</span>
+        <span style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          borderRadius: '20px',
+          fontSize: '0.9rem',
+        }}>VPS</span>
       </div>
-      
+    </div>
+  </div>
+</div>
+        </div>
 
       </div>
       

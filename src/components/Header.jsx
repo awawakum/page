@@ -38,7 +38,7 @@ const Header = () => {
       setIsScrolled(currentScrollY > 50);
 
       // Определяем активную секцию
-      const sections = ["about", "portfolio", "services", "contact"];
+      const sections = ["about", "portfolio", "services"];
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
@@ -100,16 +100,6 @@ const Header = () => {
           <li className="nav-item">
             <button
               className={`nav-link ${
-                activeSection === "portfolio" ? "active" : ""
-              }`}
-              onClick={() => handleClick("portfolio")}
-            >
-              Портфолио
-            </button>
-          </li>
-          <li className="nav-item">
-            <button
-              className={`nav-link ${
                 activeSection === "services" ? "active" : ""
               }`}
               onClick={() => handleClick("services")}
@@ -120,11 +110,11 @@ const Header = () => {
           <li className="nav-item">
             <button
               className={`nav-link ${
-                activeSection === "contact" ? "active" : ""
+                activeSection === "portfolio" ? "active" : ""
               }`}
-              onClick={() => handleClick("contact")}
+              onClick={() => handleClick("portfolio")}
             >
-              Контакты
+              Портфолио
             </button>
           </li>
         </ul>

@@ -8,7 +8,6 @@ body {
     color: #333;
     overflow-x: hidden;
     background: #f0f8ff;
-    min-height: 1000px;
     -webkit-touch-callout: none; /* Отключаем вызов меню при долгом нажатии */
     -webkit-user-select: none; /* Запрещаем выделение текста */
     -moz-user-select: none;
