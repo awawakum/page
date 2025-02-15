@@ -4,7 +4,7 @@ import './App.css'
 
 const App = () => {
   return (
-    <Router>
+    <Router basename='/page'>
       <Routes>
         <Route path="/" element={<HomePage />} />
       </Routes>

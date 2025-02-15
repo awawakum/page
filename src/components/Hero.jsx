@@ -49,7 +49,7 @@ const Hero = () => {
 
         {/* Кнопка для связи в Telegram с иконкой */}
         <a
-          href="https://t.me/your_telegram_link" // Замените на вашу ссылку
+          href="https://t.me/urlfvck" 
           target="_blank"
           rel="noopener noreferrer"
           style={{

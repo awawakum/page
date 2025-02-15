@@ -84,7 +84,7 @@ const Header = () => {
     >
 
     <div class="logo">
-      <img src="/cheef.svg" alt="Логотип" width="40" height="40" />
+      <img src="/page/cheef.svg" alt="Логотип" width="40" height="40" />
     </div>
 
       <nav className="nav">
