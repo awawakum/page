@@ -1,0 +1,139 @@
+/* src/components/Header.css */
+
+/* Стили для header */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  height: 60px; /* Высота header */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Стили для header при скролле */
+.header.scrolled {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Скрытие header при скролле вниз */
+.header.hidden {
+  transform: translateY(-100%);
+}
+
+/* Показ header при скролле вверх */
+.header.visible {
+  transform: translateY(0);
+}
+
+/* Навигация */
+.nav {
+  position: absolute;
+  justify-content: right;
+  align-items: right;
+  right: 1%;
+  padding: 1rem 0;
+}
+
+/* Список ссылок */
+.nav-list {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Элементы списка */
+.nav-item {
+  margin: 0 1.5rem;
+}
+
+/* Стили для кнопок-ссылок */
+.nav-link {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+/* Анимация подчеркивания */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+/* Анимация при наведении */
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Активная ссылка */
+.nav-link.active {
+  color: black;
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Логотип */
+header .logo {
+  position: absolute;
+  left: 1%;
+  padding-right: 10%;
+}
+
+header .logo svg {
+  transition: transform 0.3s ease;
+}
+
+header .logo svg:hover {
+  transform: rotate(15deg);
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-list {
+    position: fixed;
+    top: 60px;
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transition: right 0.3s ease;
+  }
+
+  .nav-list.active {
+    right: 0;
+    
+  }
+}
