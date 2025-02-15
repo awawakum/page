@@ -21,7 +21,7 @@ const Hero = () => {
         {/* Название проекта */}
         <h1
           style={{
-            fontSize: 'clamp(6rem, 7vw, 8rem)', // Уменьшаем максимальный размер для iPhone
+            fontSize: 'clamp(3rem, 7vw, 9rem)', // Уменьшаем максимальный размер для iPhone
             fontWeight: 'bold',
             margin: 0,
             lineHeight: 1.2, // Увеличиваем line-height для лучшей читаемости
