@@ -67,9 +67,21 @@ const MatrixBackground = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    // Устанавливаем размеры Canvas равными размеру окна
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Получаем плотность пикселей устройства
+    const pixelRatio = window.devicePixelRatio || 1;
+
+    // Устанавливаем размеры Canvas с учетом плотности пикселей
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    canvas.width = width * pixelRatio;
+    canvas.height = height * pixelRatio;
+
+    // Масштабируем контекст Canvas
+    ctx.scale(pixelRatio, pixelRatio);
+
+    // Устанавливаем CSS-размеры Canvas (чтобы он не растягивался)
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
 
     // Генерация точек
     generatePoints(canvas);
@@ -84,9 +96,23 @@ const MatrixBackground = () => {
     };
     window.addEventListener('scroll', handleScroll);
 
+    // Обработчик изменения размера окна
+    const handleResize = () => {
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight;
+      canvas.width = newWidth * pixelRatio;
+      canvas.height = newHeight * pixelRatio;
+      canvas.style.width = `${newWidth}px`;
+      canvas.style.height = `${newHeight}px`;
+      ctx.scale(pixelRatio, pixelRatio);
+      generatePoints(canvas);
+    };
+    window.addEventListener('resize', handleResize);
+
     // Очистка при размонтировании компонента
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

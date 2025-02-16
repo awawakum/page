@@ -113,27 +113,22 @@ header .logo svg:hover {
 
 /* Адаптивные стили */
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
+
+  /* Логотип */
+header .logo {
+  position: absolute;
+  left: 1%;
+  padding-right: 10%;
+  padding-top: 2%;
+}
 
   .nav-list {
-    position: fixed;
-    top: 60px;
-    right: -100%;
+    position: relative;
     width: 100%;
-    height: calc(100vh - 60px);
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
     transition: right 0.3s ease;
   }
 
   .nav-list.active {
     right: 0;
-    
   }
 }

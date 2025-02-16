@@ -107,16 +107,6 @@ const Header = () => {
               Услуги
             </button>
           </li>
-          <li className="nav-item">
-            <button
-              className={`nav-link ${
-                activeSection === "portfolio" ? "active" : ""
-              }`}
-              onClick={() => handleClick("portfolio")}
-            >
-              Портфолио
-            </button>
-          </li>
         </ul>
       </nav>
     </header>
