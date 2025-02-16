@@ -5,6 +5,7 @@ const MatrixBackground = () => {
   const points = useRef([]);
   const scrollY = useRef(1);
   const prevScrollY = useRef(0);
+  const resizeTimeout = useRef(null);
 
   // Генерация случайных точек
   const generatePoints = (canvas) => {
@@ -96,16 +97,21 @@ const MatrixBackground = () => {
     };
     window.addEventListener('scroll', handleScroll);
 
-    // Обработчик изменения размера окна
+    // Обработчик изменения размера окна с debounce
     const handleResize = () => {
-      const newWidth = window.innerWidth;
-      const newHeight = window.innerHeight;
-      canvas.width = newWidth * pixelRatio;
-      canvas.height = newHeight * pixelRatio;
-      canvas.style.width = `${newWidth}px`;
-      canvas.style.height = `${newHeight}px`;
-      ctx.scale(pixelRatio, pixelRatio);
-      generatePoints(canvas);
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);
+      }
+      resizeTimeout.current = setTimeout(() => {
+        const newWidth = window.innerWidth;
+        const newHeight = window.innerHeight;
+        canvas.width = newWidth * pixelRatio;
+        canvas.height = newHeight * pixelRatio;
+        canvas.style.width = `${newWidth}px`;
+        canvas.style.height = `${newHeight}px`;
+        ctx.scale(pixelRatio, pixelRatio);
+        generatePoints(canvas);
+      }, 100); // Задержка 100 мс
     };
     window.addEventListener('resize', handleResize);
 
@@ -113,6 +119,9 @@ const MatrixBackground = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
+      if (resizeTimeout.current) {
+        clearTimeout(resizeTimeout.current);
+      }
     };
   }, []);
 
