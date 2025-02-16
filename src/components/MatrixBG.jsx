@@ -6,6 +6,7 @@ const MatrixBackground = () => {
   const scrollY = useRef(1);
   const prevScrollY = useRef(0);
   const resizeTimeout = useRef(null);
+  const initialHeight = useRef(window.innerHeight); // Фиксируем начальную высоту окна
 
   // Генерация случайных точек
   const generatePoints = (canvas) => {
@@ -73,7 +74,7 @@ const MatrixBackground = () => {
 
     // Устанавливаем размеры Canvas с учетом плотности пикселей
     const width = window.innerWidth;
-    const height = window.innerHeight;
+    const height = initialHeight.current; // Используем фиксированную высоту
     canvas.width = width * pixelRatio;
     canvas.height = height * pixelRatio;
 
@@ -104,7 +105,7 @@ const MatrixBackground = () => {
       }
       resizeTimeout.current = setTimeout(() => {
         const newWidth = window.innerWidth;
-        const newHeight = window.innerHeight;
+        const newHeight = initialHeight.current; // Фиксируем высоту
         canvas.width = newWidth * pixelRatio;
         canvas.height = newHeight * pixelRatio;
         canvas.style.width = `${newWidth}px`;
