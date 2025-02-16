@@ -16,7 +16,7 @@ const styles = {
 
   // Стили для заголовка
   title: {
-    fontSize: 'clamp(5rem, 8vw, 8rem)',
+    fontSize: 'clamp(8rem, 8vw, 8rem)',
     fontWeight: 'bold',
     margin: 0,
     marginTop: 30,
