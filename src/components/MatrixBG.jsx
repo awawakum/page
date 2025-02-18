@@ -3,10 +3,11 @@ import { useEffect, useRef } from 'react';
 const MatrixBackground = () => {
   const canvasRef = useRef(null);
   const points = useRef([]);
-  const scrollY = useRef(1);
+  const scrollY = useRef(0);
   const prevScrollY = useRef(0);
   const resizeTimeout = useRef(null);
   const initialHeight = useRef(window.innerHeight); // Фиксируем начальную высоту окна
+  const pixelRatio = useRef(window.devicePixelRatio || 1); // Фиксируем плотность пикселей
 
   // Генерация случайных точек
   const generatePoints = (canvas) => {
@@ -16,7 +17,7 @@ const MatrixBackground = () => {
       points.current.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        speed: (Math.random() * 0.5 + 0.2) * (Math.random() > 0.5 ? 1 : -1), // Скорость и направление
+        speed: Math.random() * 0.5 + 0.2, // Фиксированная скорость движения
       });
     }
   };
@@ -28,15 +29,12 @@ const MatrixBackground = () => {
 
     // Рисуем точки и линии
     points.current.forEach((point, i) => {
-      // Обновляем позицию точки в зависимости от прокрутки
-      const deltaScroll = scrollY.current - prevScrollY.current;
-      point.y += point.speed * (deltaScroll / 10);
+      // Плавное движение точек вниз
+      point.y += point.speed;
 
       // Если точка вышла за пределы Canvas, возвращаем её в начало
       if (point.y > canvas.height) {
         point.y = 0;
-      } else if (point.y < 0) {
-        point.y = canvas.height;
       }
 
       // Рисуем точку
@@ -69,17 +67,14 @@ const MatrixBackground = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
 
-    // Получаем плотность пикселей устройства
-    const pixelRatio = window.devicePixelRatio || 1;
-
     // Устанавливаем размеры Canvas с учетом плотности пикселей
     const width = window.innerWidth;
     const height = initialHeight.current; // Используем фиксированную высоту
-    canvas.width = width * pixelRatio;
-    canvas.height = height * pixelRatio;
+    canvas.width = width * pixelRatio.current;
+    canvas.height = height * pixelRatio.current;
 
     // Масштабируем контекст Canvas
-    ctx.scale(pixelRatio, pixelRatio);
+    ctx.scale(pixelRatio.current, pixelRatio.current);
 
     // Устанавливаем CSS-размеры Canvas (чтобы он не растягивался)
     canvas.style.width = `${width}px`;
@@ -93,8 +88,19 @@ const MatrixBackground = () => {
 
     // Обработчик прокрутки
     const handleScroll = () => {
-      prevScrollY.current = scrollY.current;
-      scrollY.current = window.scrollY;
+      const currentScrollY = window.scrollY;
+
+      // Нормализуем скорость прокрутки
+      const deltaScroll = currentScrollY - scrollY.current;
+      const normalizedDelta = deltaScroll * 0.1; // Уменьшаем влияние прокрутки
+
+      // Обновляем позиции точек
+      points.current.forEach((point) => {
+        point.y += normalizedDelta;
+      });
+
+      // Обновляем значение прокрутки
+      scrollY.current = currentScrollY;
     };
     window.addEventListener('scroll', handleScroll);
 
@@ -105,15 +111,25 @@ const MatrixBackground = () => {
       }
       resizeTimeout.current = setTimeout(() => {
         const newWidth = window.innerWidth;
-        const newHeight = initialHeight.current; // Фиксируем высоту
-        canvas.width = newWidth * pixelRatio;
-        canvas.height = newHeight * pixelRatio;
+        const newHeight = initialHeight.current;
+
+        // Устанавливаем новые размеры Canvas
+        canvas.width = newWidth * pixelRatio.current;
+        canvas.height = newHeight * pixelRatio.current;
         canvas.style.width = `${newWidth}px`;
         canvas.style.height = `${newHeight}px`;
-        ctx.scale(pixelRatio, pixelRatio);
-        generatePoints(canvas);
+        ctx.scale(pixelRatio.current, pixelRatio.current);
+
+        // Масштабируем существующие точки
+        const scaleX = newWidth / (canvas.width / pixelRatio.current);
+        const scaleY = newHeight / (canvas.height / pixelRatio.current);
+        points.current.forEach((point) => {
+          point.x *= scaleX;
+          point.y *= scaleY;
+        });
       }, 100); // Задержка 100 мс
     };
+
     window.addEventListener('resize', handleResize);
 
     // Очистка при размонтировании компонента
