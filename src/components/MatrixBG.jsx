@@ -4,7 +4,7 @@ const MatrixBackground = () => {
   const canvasRef = useRef(null);
   const points = useRef([]);
   const scrollY = useRef(0);
-  const prevScrollY = useRef(0);
+  const scrollDelta = useRef(0); // Разница в прокрутке для ускорения
   const resizeTimeout = useRef(null);
   const initialHeight = useRef(window.innerHeight); // Фиксируем начальную высоту окна
   const pixelRatio = useRef(window.devicePixelRatio || 1); // Фиксируем плотность пикселей
@@ -17,7 +17,7 @@ const MatrixBackground = () => {
       points.current.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        speed: Math.random() * 0.5 + 0.2, // Фиксированная скорость движения
+        speed: Math.random() * 0.5, // Базовая скорость движения
       });
     }
   };
@@ -29,12 +29,14 @@ const MatrixBackground = () => {
 
     // Рисуем точки и линии
     points.current.forEach((point, i) => {
-      // Плавное движение точек вниз
-      point.y += point.speed;
+      // Изменяем скорость точек в зависимости от направления скролла
+      point.y += point.speed + scrollDelta.current * 0.1; // Ускорение зависит от scrollDelta
 
       // Если точка вышла за пределы Canvas, возвращаем её в начало
       if (point.y > canvas.height) {
         point.y = 0;
+      } else if (point.y < 0) {
+        point.y = canvas.height;
       }
 
       // Рисуем точку
@@ -90,14 +92,8 @@ const MatrixBackground = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Нормализуем скорость прокрутки
-      const deltaScroll = currentScrollY - scrollY.current;
-      const normalizedDelta = deltaScroll * 0.1; // Уменьшаем влияние прокрутки
-
-      // Обновляем позиции точек
-      points.current.forEach((point) => {
-        point.y += normalizedDelta;
-      });
+      // Вычисляем разницу в прокрутке
+      scrollDelta.current = currentScrollY - scrollY.current;
 
       // Обновляем значение прокрутки
       scrollY.current = currentScrollY;
